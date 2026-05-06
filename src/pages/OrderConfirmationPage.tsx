@@ -5,7 +5,7 @@ import { ArrowLeft, MapPin, Clock, ChefHat, CheckCircle, Package, Sparkles } fro
 import { Badge } from '../components/ui/Badge';
 import { WasteInsight } from '../components/features/WasteInsight';
 import { Button } from '../components/ui/Button';
-import { useOrders, type OrderStatus } from '../store/orderStore';
+import { useOrders, type Order, type OrderStatus } from '../store/orderStore';
 import { useToast } from '../store/toastStore';
 
 const statusLabels: Record<OrderStatus, string> = {
@@ -40,8 +40,8 @@ export function OrderConfirmationPage() {
   const { orders } = useOrders();
   const { addToast } = useToast();
 
-  const [currentOrder, setCurrentOrder] = useState(() => {
-    const stateOrder = location.state?.order;
+  const [currentOrder, setCurrentOrder] = useState<Order | undefined>(() => {
+    const stateOrder = location.state?.order as Order | undefined;
     if (stateOrder) return stateOrder;
     return orders.find(o => o.queueNo === location.state?.order?.queueNo);
   });

@@ -10,7 +10,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   LineChart, Line, AreaChart, Area,
 } from 'recharts';
-import { ordersApi, analyticsApi } from '../lib/api';
+import { analyticsApi } from '../lib/api';
 
 const chartColors = {
   primary: '#2563eb',
@@ -30,7 +30,6 @@ const chartTooltipStyle = {
 
 export function AdminAnalyticsPage() {
   const [analytics, setAnalytics] = useState(mockAnalytics);
-  const [liveOrders, setLiveOrders] = useState<any[]>([]);
 
   useEffect(() => {
     analyticsApi.get().then(data => {
@@ -44,8 +43,6 @@ export function AdminAnalyticsPage() {
         dailyRevenue: data.dailyRevenue?.length > 0 ? data.dailyRevenue.map((d: any) => ({ day: d.day, revenue: d.revenue })) : prev.dailyRevenue,
       }));
     }).catch(() => {});
-
-    ordersApi.getAll().then(data => setLiveOrders(data)).catch(() => {});
   }, []);
 
   return (

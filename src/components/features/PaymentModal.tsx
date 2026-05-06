@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle, Shield, Smartphone, RotateCcw } from 'lucide-react';
+import { X, CheckCircle, Shield, Smartphone } from 'lucide-react';
 import { Button } from '../ui/Button';
 
 interface PaymentModalProps {

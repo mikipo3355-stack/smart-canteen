@@ -3,14 +3,14 @@ import { ordersApi } from '../lib/api';
 
 export type OrderStatus = 'pending' | 'accepted' | 'preparing' | 'ready' | 'picked_up';
 
-interface OrderItem {
+export interface OrderItem {
   name: string;
   quantity: number;
   price: number;
   emoji: string;
 }
 
-interface Order {
+export interface Order {
   id: string;
   queueNo: string;
   studentId: string;
